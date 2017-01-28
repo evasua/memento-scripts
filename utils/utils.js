@@ -1,3 +1,3 @@
 function createEvent(text) {
- message('New ' + text) 
+ message('New2 ' + text) 
 }
