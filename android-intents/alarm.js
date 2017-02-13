@@ -28,7 +28,7 @@ var AndroidAlarm = {
                 i.extraBool("android.intent.extra.alarm.SKIP_UI", options.skipUI);
         }
         i.send();
-    }
+    },
    
     timer: function(length, message, skipUI) {
         i = intent("android.intent.action.SET_TIMER");
