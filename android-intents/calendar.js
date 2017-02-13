@@ -10,6 +10,9 @@ var AndroidCalendar = {
       {bool} allDay - A boolean specifying whether this is an all-day event
       {String} location - The event location
       {Array} emails - Array of email addresses that specify the invitee
+      
+    @example
+    AndroidCalendar.create( entry().field("Title") , {begin:new Date(), allDay:true});
     */
     create: function(title, options) {
         i = intent("android.intent.action.INSERT");
