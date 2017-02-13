@@ -5,7 +5,7 @@ var AndroidAlarm = {
     @param {number} minutes - The minutes for the alarm.
     @param {string} message - A custom message to identify the alarm.
     @param {Arguments} options - Extra options
-    You can then specify various alarm details using extra options:
+    You can specify extra alarm options:
       {Array} days - An Array including each week day on which this alarm should be repeated. Each day must be declared with an integer.
       {bool} vibrate - A boolean specifying whether to vibrate for this alarm.
       {bool} skipUI - A boolean specifying whether the responding app should skip its UI when setting the alarm. 
