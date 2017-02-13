@@ -29,4 +29,15 @@ var AndroidAlarm = {
         }
         i.send();
     }
+   
+    timer: function(length, message, skipUI) {
+        i = intent("android.intent.action.SET_TIMER");
+        i.extraInt("android.intent.extra.alarm.LENGTH", length);    
+        if (message !== undefined)
+            i.extra("android.intent.extra.alarm.MESSAGE", message);
+        if (skipUI !== undefined)
+            i.extraBool("android.intent.extra.alarm.SKIP_UI", options.skipUI);
+        i.send();
+    }
+    
 };
