@@ -29,14 +29,23 @@ var AndroidAlarm = {
         }
         i.send();
     },
-   
+    
+   /**
+    Create a timer
+    @param {number} length - The length of the timer in seconds.
+    @param {string} message -A custom message to identify the timer.
+    @param {bool} skipUI - A boolean specifying whether the responding app should skip its UI when setting the timer. 
+      
+    @example
+    AndroidAlarm.timer(30);
+    */
     timer: function(length, message, skipUI) {
         i = intent("android.intent.action.SET_TIMER");
         i.extraInt("android.intent.extra.alarm.LENGTH", length);    
         if (message !== undefined)
             i.extra("android.intent.extra.alarm.MESSAGE", message);
         if (skipUI !== undefined)
-            i.extraBool("android.intent.extra.alarm.SKIP_UI", options.skipUI);
+            i.extraBool("android.intent.extra.alarm.SKIP_UI", skipUI);
         i.send();
     }
     
