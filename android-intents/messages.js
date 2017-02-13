@@ -7,8 +7,8 @@ var AndroidMessages = {
     @param {Array} attachments - Array of attachments.
    
     @example
-    AndroidMessages.email( entry.field("Email") , "Subject" , 
-      "Hello , " + entry.field("Name") +"!\nPlease find attached!",  entry.field("Photos") );
+    AndroidMessages.email( entry().field("Email") , "Subject" , 
+      "Hello , " + entry().field("Name") +"!\nPlease find attached!",  entry().field("Photos") );
     */  
     email: function(email, subject, text, attachments) {
         i = intent(attachments instanceof Array && attachments.length > 1 ?
