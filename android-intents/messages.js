@@ -23,7 +23,24 @@ var AndroidMessages = {
             else i.extraUri("android.intent.extra.STREAM", attachments)
         }
         i.send();
-    }
+    },
+   
+/**
+    Compose an SMS message
+    @param {string} - The phone number
+    @param {text} - A string for the text message.
+    
+    @example
+    AndroidMessages.sms("+1555102088" , entry().field("Status"));
+    */
+    
+    sms: function(phone , text) {
+        i = intent("android.intent.action.SENDTO" );
+	    i.data("smsto:"+phone); 
+        i.extra("sms_body", text);	    
+	    i.send();
+    }    
+    
 };
 
 
