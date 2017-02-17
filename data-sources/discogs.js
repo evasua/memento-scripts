@@ -5,7 +5,7 @@ function Discogs (apiKey , apiSecret, type) {
 }
 
 Discogs.prototype.search = function(query) {
-  var result = http().get("https://api.discogs.com/database/search?q=" + query + "&key=" + this.apiKey + "&secret=" + this.apiSecret + "&type=" + this.type);
+  var result = http().get("https://api.discogs.com/database/search?q=" + encodeURIComponent(query) + "&key=" + this.apiKey + "&secret=" + this.apiSecret + "&type=" + this.type);
   var json = JSON.parse(result.body);
   return json.results;  
 }
