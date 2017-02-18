@@ -12,7 +12,7 @@ Discogs.prototype.search = function(query) {
 
 Discogs.prototype.extra = function(id) {
     message("selected id :" + id);
-     var result = http().get("https://api.discogs.com/" + this.type + "/" + id);
+     var result = http().get("https://api.discogs.com/" + this.type + "s/" + id);
      return JSON.parse(result.body); 
 }
 
