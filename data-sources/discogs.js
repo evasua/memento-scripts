@@ -12,7 +12,15 @@ Discogs.prototype.search = function(query) {
 
 Discogs.prototype.extra = function(id) {
     message("selected id :" + id);
-     var result = http().get("https://api.discogs.com/" + this.type + "s/" + id + "?key=" + this.apiKey + "&secret=" + this.apiSecret);
-     return JSON.parse(result.body); 
+     var resultJson = http().get("https://api.discogs.com/" + this.type + "s/" + id + "?key=" + this.apiKey + "&secret=" + this.apiSecret);
+     var result = JSON.parse(resultJson.body); 
+    
+    var imagesURLs = [];
+    for(var i in result.images) {
+        imagesURLs.push(result.images[i].url);
+    }
+    result['images'] = imagesURLs.join();    
+    
+    return result;
 }
 
