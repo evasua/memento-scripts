@@ -14,13 +14,10 @@ Discogs.prototype.extra = function(id) {
     message("selected id :" + id);
      var resultJson = http().get("https://api.discogs.com/" + this.type + "s/" + id + "?key=" + this.apiKey + "&secret=" + this.apiSecret);
      var result = JSON.parse(resultJson.body); 
-    
-    var imagesURLs = [];
-    for(var i in result.images) {
-        imagesURLs.push(result.images[i].uri);
-    }
-    result['images'] = imagesURLs.join();    
-    
+ 
+    result['images'] =    
+        result.map(function(e) { return e.uri; }).join(); 
+     
     return result;
 }
 
