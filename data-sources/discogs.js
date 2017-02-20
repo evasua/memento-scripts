@@ -16,7 +16,7 @@ Discogs.prototype.extra = function(id) {
      var result = JSON.parse(resultJson.body); 
  
     result['images'] =    
-        result.map(function(e) { return e.uri; }).join(); 
+        result.images.map(function(e) { return e.uri; }).join(); 
      
     return result;
 }
