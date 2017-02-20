@@ -16,7 +16,7 @@ Discogs.prototype.extra = function(id) {
     result['images'] =    
         result.images.map(function(e) { return e.uri; }).join(); 
     result['videos'] =    
-        result.images.map(function(e) { return e.uri; }).join();     
+        result.videos.map(function(e) { return e.uri; }).join();     
     result['styles'] =    
         result.styles.join();     
     result['genres'] =    
