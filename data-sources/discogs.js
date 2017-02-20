@@ -11,13 +11,16 @@ Discogs.prototype.search = function(query) {
 }
 
 Discogs.prototype.extra = function(id) {
-    message("selected id :" + id);
      var resultJson = http().get("https://api.discogs.com/" + this.type + "s/" + id + "?key=" + this.apiKey + "&secret=" + this.apiSecret);
      var result = JSON.parse(resultJson.body); 
- 
     result['images'] =    
         result.images.map(function(e) { return e.uri; }).join(); 
-     
+    result['videos'] =    
+        result.images.map(function(e) { return e.uri; }).join();     
+    result['styles'] =    
+        result.styles.join();     
+    result['genres'] =    
+        result.genres.join();        
     return result;
 }
 
