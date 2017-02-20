@@ -24,7 +24,9 @@ Discogs.prototype.extra = function(id) {
     result['videos'] =    
         result.videos.map(function(e) { return e.uri; }).join();     
     result['artists'] =    
-        result.artists.map(function(e) { return e.name; }).join();       
+        result.artists.map(function(e) { return e.name; }).join();   
+   result['tracklist'] =    
+        result.tracklist.map(function(e) { return e.position + ". " + e.title + " " + e.duration; }).join("\n");     
     result['styles'] =    
         result.styles.join();     
     result['genres'] =    
