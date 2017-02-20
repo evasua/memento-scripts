@@ -23,6 +23,8 @@ Discogs.prototype.extra = function(id) {
         result.images.map(function(e) { return e.uri; }).join(); 
     result['videos'] =    
         result.videos.map(function(e) { return e.uri; }).join();     
+    result['artists'] =    
+        result.artists.map(function(e) { return e.name; }).join();       
     result['styles'] =    
         result.styles.join();     
     result['genres'] =    
