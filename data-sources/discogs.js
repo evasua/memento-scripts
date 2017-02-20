@@ -17,7 +17,7 @@ Discogs.prototype.extra = function(id) {
     
     var imagesURLs = [];
     for(var i in result.images) {
-        imagesURLs.push(result.images[i].url);
+        imagesURLs.push(result.images[i].uri);
     }
     result['images'] = imagesURLs.join();    
     
