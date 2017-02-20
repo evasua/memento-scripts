@@ -1,3 +1,8 @@
+/**
+@param {string} apiKey - 
+@param {string} apiSecret - 
+@param {string} type - One of release, master, artist, label.
+*/
 function Discogs (apiKey , apiSecret, type) {
     this.apiKey = apiKey;
     this.apiSecret = apiSecret;
@@ -17,20 +22,20 @@ Discogs.prototype.barcode = function(code) {
 }
 
 Discogs.prototype.extra = function(id) {
-     var resultJson = http().get("https://api.discogs.com/" + this.type + "s/" + id + "?key=" + this.apiKey + "&secret=" + this.apiSecret);
-     var result = JSON.parse(resultJson.body); 
-    result['images'] =    
-        result.images.map(function(e) { return e.uri; }).join(); 
-    result['videos'] =    
-        result.videos.map(function(e) { return e.uri; }).join();     
-    result['artists'] =    
-        result.artists.map(function(e) { return e.name; }).join();   
-   result['tracklist'] =    
-        result.tracklist.map(function(e) { return e.position + ". " + e.title + " " + e.duration; }).join("\n");     
-    result['styles'] =    
-        result.styles.join();     
-    result['genres'] =    
-        result.genres.join();        
+    var resultJson = http().get("https://api.discogs.com/" + this.type + "s/" + id + "?key=" + this.apiKey + "&secret=" + this.apiSecret);
+    var result = JSON.parse(resultJson.body); 
+    if (result.images !== undefined) 
+        result['images'] = result.images.map(function(e) { return e.uri; }).join(); 
+    if (result.videos !== undefined) 
+        result['videos'] = result.videos.map(function(e) { return e.uri; }).join();     
+    if (result.artists !== undefined)
+        result['artists'] = result.artists.map(function(e) { return e.name; }).join();   
+    if (result.tracklist !== undefined)  
+        result['tracklist'] = result.tracklist.map(function(e) { return e.position + ". " + e.title + " " + e.duration; }).join("\n");     
+    if (result.styles !== undefined)  
+        result['styles'] = result.styles.join();     
+    if (result.genres !== undefined)
+        result['genres'] = result.genres.join();        
     return result;
 }
 
