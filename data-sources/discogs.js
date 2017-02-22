@@ -1,7 +1,16 @@
 /**
-@param {string} apiKey - 
-@param {string} apiSecret - 
-@param {string} type - One of release, master, artist, label.
+The data source for obtaining information from discogs.com.
+@param {string} apiKey - Consumer key.
+@param {string} apiSecret - Consumer secret. 
+@param {string} type - One of release, master, artist.
+
+Consumer key and Consumer secret can be obtained by this link : https://www.discogs.com/settings/developers
+More info about Discogs API see here: https://www.discogs.com/developers
+
+@example 
+var discogs = new Discogs("Consumer key" ,"Consumer secret" , "release" );
+var r = discogs.search(query);
+result( r , function(id) { return discogs.extra(id);});
 */
 function Discogs (apiKey , apiSecret, type) {
     this.apiKey = apiKey;
@@ -9,18 +18,30 @@ function Discogs (apiKey , apiSecret, type) {
     this.type = type;
 }
 
+
+/**
+Issue a search query to Discogs database.
+@param {string} query - Search query.
+*/
 Discogs.prototype.search = function(query) {
   var result = http().get("https://api.discogs.com/database/search?q=" + encodeURIComponent(query) + "&key=" + this.apiKey + "&secret=" + this.apiSecret + "&type=" + this.type);
   var json = JSON.parse(result.body);
   return json.results;  
 }
 
+/**
+Issue a search query to Discogs database.
+@param {string} code - Search barcodes.
+*/
 Discogs.prototype.barcode = function(code) {
   var result = http().get("https://api.discogs.com/database/search?barcode=" + encodeURIComponent(code) + "&key=" + this.apiKey + "&secret=" + this.apiSecret + "&type=" + this.type);
   var json = JSON.parse(result.body);
   return json.results;  
 }
 
+/**
+@param {string} id - The resource identifier.
+*/
 Discogs.prototype.extra = function(id) {
     var resultJson = http().get("https://api.discogs.com/" + this.type + "s/" + id + "?key=" + this.apiKey + "&secret=" + this.apiSecret);
     var result = JSON.parse(resultJson.body); 
