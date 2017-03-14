@@ -1,3 +1,3 @@
 function test(message) {
- return message + " " + new Date().getMinutes(); 
+ return message + " " + new Date().getYear(); 
 }
